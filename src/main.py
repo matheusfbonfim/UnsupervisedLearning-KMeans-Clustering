@@ -37,18 +37,26 @@ def main():
 
 
     ############################
-    # ELIMINANDO DADOS INCONSISTENTES OU COLUNAS QUE NÃO AGREGAM INFORMAÇÃO
+    # TRADUZINDO NOTAS - AGREGANDO INFORMACAO
 
-    # Elimine as linhas onde pelo menos um elemento está faltando.
-    df = df.dropna()
+    # Alunos que entraram por modalidade especifica e independente do ENEM
 
-    # Elimine as linhas onde a nota no ENEM é zero
-    index_value_error = df[df['ENEM'] == '0'].index
-    df = df.drop(index=index_value_error)
+    # Linhas onde o valor é zero é mantido
+    df['ENEM'] = df['ENEM'].replace(np.nan, '0')
 
-    # Elimine a linha onde aparece o #VALUE
-    index_value_error = df[df['ENEM'] == '#VALUE!'].index
-    df = df.drop(index=index_value_error)
+    # Linha onde o valor é #VALUE! é substituido por 0
+    df['ENEM'] = df['ENEM'].replace('#VALUE!', '0')
+
+    print(df[20:60])
+
+    # Eliminando linha que não informa a escola
+    index_nao_informado = df[df['Escola'] == 'Não Informado'].index
+    df = df.drop(index=index_nao_informado)
+
+
+
+    ############################
+    # ELIMINANDO COLUNAS - AGREGANDO INFORMACAO
 
     # Eliminando colunas de coeficiente e periodo
     del df['Coeficiente']
@@ -90,8 +98,8 @@ def main():
 
     # Plotando o Elbow Method
     plt.plot(range(1,12), wcss)
-    plt.title('Metodo do cotovelo')
-    plt.xlabel('Numero de Clusters')
+    plt.title('Método do cotovelo')
+    plt.xlabel('Número de Clusters')
     plt.ylabel('WCSS')
     plt.show()
 
