@@ -12,10 +12,10 @@ import matplotlib.colors
 # Algoritmo K-means e Elbow
 from sklearn.cluster import KMeans
 
+import seaborn as sns
 
 # -----------------------------------------------------------
 # -----------------------------------------------------------
-
 
 def main():
     ##########################
@@ -98,26 +98,46 @@ def main():
 
     ############################
     ## KMEANS
-
     # Com analise do metodo do cotovelo foi escolhido n_clusters = 3
+
     # Modelo
     kmeans = KMeans(n_clusters = 3, init="k-means++")
 
     # Treinando o kmeans
     kmeans.fit(df[['Escola', 'ENEM']])
 
-    print(f"Labels: {kmeans.labels_}")
-    print(f"Cluster Centers: {kmeans.cluster_centers_}")
+    # Vendo as labels criadas
+    print(f"Labels: {kmeans.labels_}\n")
+    print(f"Cluster Centers: {kmeans.cluster_centers_}\n")
+
+    ############################
+    ## VISUALIZANDO OS CLUTERS
+
+    print("=" * 50)
+    print("\t\tVISUALIZANDO OS CLUTERS")
+    print("=" * 50)
 
     for label in np.unique(kmeans.labels_):
         print('LABEL: ', label)
         print(df.iloc[kmeans.labels_ == label])
+        print('\n')
 
+
+    # Incluindo a column clusters
+    df['Clusters'] = kmeans.labels_
+    print("=" * 50)
+    print("\t\tVISUALIZACAO - ADD CLUSTERS")
+    print("=" * 50)
+    print(df.head(), '\n')
+
+
+    # Plotando o clustering
     cmap = matplotlib.colors.ListedColormap(['red', 'blue', 'green'], "")
     norm = matplotlib.colors.BoundaryNorm(boundaries=[0, 1, 2, 3], ncolors=3, clip=True)
-    df[['Escola', 'ENEM']].plot.scatter(x='Escola', y='ENEM', c = kmeans.labels_, cmap=cmap, norm=norm, edgecolor=(0, 0, 0))
-    plt.show()
+    sns.scatterplot(x='ENEM', y = 'Escola', hue = 'Clusters', data = df, cmap = cmap, norm = norm)
 
+
+    plt.show()
 
 
 
