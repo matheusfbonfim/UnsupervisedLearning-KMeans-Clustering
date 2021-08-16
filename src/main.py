@@ -47,12 +47,9 @@ def main():
     # Linha onde o valor é #VALUE! é substituido por 0
     df['ENEM'] = df['ENEM'].replace('#VALUE!', '0')
 
-    print(df[20:60])
-
     # Eliminando linha que não informa a escola
     index_nao_informado = df[df['Escola'] == 'Não Informado'].index
     df = df.drop(index=index_nao_informado)
-
 
 
     ############################
