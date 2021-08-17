@@ -139,7 +139,7 @@ def main():
     # Plotando o clustering
     cmap = matplotlib.colors.ListedColormap(['red', 'blue', 'green'], "")
     norm = matplotlib.colors.BoundaryNorm(boundaries=[0, 1, 2, 3], ncolors=3, clip=True)
-    sns.scatterplot(x='ENEM', y = 'Escola', hue = 'Clusters', data = df, cmap = cmap, norm = norm)
+    sns.scatterplot(x='ENEM', y = 'Escola', hue = 'Clusters', data = df, palette = cmap, hue_norm = norm)
 
 
     plt.show()
