@@ -41,10 +41,10 @@
 ## 💻 Sobre o projeto
 
 - Projeto desenvolvido na matéria de Sistemas Inteligentes, durante o curso de Engenharia da Computação - **[@UTFPR](http://www.utfpr.edu.br/)**.
-- A proposta do presente trabalho tem como objetivo demonstrar a aplicação de clustering sobre uma base de dados, empregado o Kmédias (Kmeans).
+- A proposta do presente trabalho tem como objetivo demonstrar a aplicação de **clustering** sobre uma base de dados, empregado o Kmédias (Kmeans).
 - O clustering é aplicado na base "alunos_engcomp" no qual foi retirada diretamente do sistema acadêmico e conta com os campos Sexo, Coeficiente, Nota no ENEM, Período e Escola (Pública ou Particular).
-- A base é pré-processada antes da aplicação do método**Kmeans.**
-- É utilizado o método Elbow (método do cotovelo) para justificar a quantidade de agrupamentos
+- A base é pré-processada antes da aplicação do método **Kmeans.**
+- É utilizado o **método Elbow** (método do cotovelo) para justificar a quantidade de agrupamentos
 
 ## 🔖 Desenvolvimento
 
